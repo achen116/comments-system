@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
-  # Route root of site with "root"
-  root 'welcome#index'
+  # Route to Angular layout
+  root to: 'application#index'
 
   resources :users, only: [:create]
   resources :comments, only: [:index, :create]
