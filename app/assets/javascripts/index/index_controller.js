@@ -1,9 +1,8 @@
+'use strict';
+
 (function() {
-  'use strict';
-  
   function IndexController() {};
   
-  angular
-    .module('app')
+  angular.module('app')
     .controller('IndexController', IndexController)
 }());

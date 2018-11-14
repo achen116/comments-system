@@ -1,17 +1,9 @@
+'use strict';
+
 (function() {
-	'use strict';
-
-	angular
-	  .module('app')
-	  .config(function($stateProvider, $urlRouterProvider) {
-	      $stateProvider
-          .state('index', {
-          	url: '',
-            templateUrl: 'index/index.html',
-            controller: 'IndexController as indexCtrl'
-          })
-
-      // Redirect unspecified routes to home page
-      $urlRouterProvider.otherwise('/');
-	  });
+  angular.module('app', ['ui.router', 'ngResource', 'templates'])
+    .config(function($httpProvider) {
+      // for CSRF Errors
+      $httpProvider.defaults.headers.common['X-CSRF-Token'] = $('meta[name=csrf-token]').attr('content');
+    });
 }());
