@@ -14,7 +14,7 @@ angular.module('app')
     	this.comment = $scope.comment
 
       this.saveComment = function() {
-      	debugger
+      	CommentsService.api.save(this.comment)
       }
     }]
   }

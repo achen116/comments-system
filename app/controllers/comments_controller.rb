@@ -1,9 +1,16 @@
 class CommentsController < ApplicationController
 	def create
-		@comment = Comment.new(comment_params)
+		@user 	 = User.new(name: comment_params[:user])
+		@comment = Comment.new(description: comment_params[:description])
 
-		return if @comment.save
-		render_errors
+		if @user.save
+			@comment.user = @user
+
+			return if @comment.save
+			render_errors
+		else
+			render_errors
+		end
 	end
 
 	private
