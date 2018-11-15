@@ -1,0 +1,22 @@
+<h2>Comments: </h2>
+
+<div class="comments-container" ng-repeat="comment in ctrl.CommentsService.comments">
+	<div class="row">
+		<div class="comment-item comment-item--name col-sm-12">
+			{{comment.user}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="comment-item comment-item--description col-sm-12">
+			{{comment.description}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="comment-item comment-item--time col-sm-6">
+			{{comment.created_at}} ago
+		</div>
+		<div class="comment-item comment-item--reply col-sm-6">
+			<a href="#">Reply</a>
+		</div>
+	</div>
+</div>

@@ -1,4 +1,8 @@
 class CommentsController < ApplicationController
+	def index
+		@comments = Comment.all
+	end
+
 	def create
 		@user 	 = User.new(name: comment_params[:user])
 		@comment = Comment.new(description: comment_params[:description])

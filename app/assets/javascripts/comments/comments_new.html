@@ -1,5 +1,5 @@
 <div class="form-container">
-	<form>
+	<form name="commentsNewForm">
 		<div class="form-group">
 			<label for="nameinput">Name*</label>
 			<input type="text" class="form-control" id="nameInput" placeholder="Enter name" ng-model="ctrl.comment.user" required>
@@ -8,6 +8,8 @@
 			<label for="commentInput">Comment*</label>
 			<input type="text" class="form-control" id="commentInput" placeholder="Enter comment" ng-model="ctrl.comment.description" required>
 		</div>
-	  <button type="submit" class="btn btn-primary" ng-click="ctrl.saveComment()">Post</button>
+		<div class="comments-form__submit">
+		  <button type="submit" class="btn btn-primary" ng-click="ctrl.saveComment()" ng-disabled="commentsNewForm.$invalid">Post</button>
+		</div>
 	</form>
 </div>

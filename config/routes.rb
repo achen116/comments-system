@@ -3,5 +3,5 @@ Rails.application.routes.draw do
   root to: 'application#index'
 
   resources :users, only: [:create]
-  resources :comments, only: [:index, :create]
+  resources :comments, only: [:index, :create], defaults: {format: :json}
 end

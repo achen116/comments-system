@@ -1,0 +1,23 @@
+.wrapper {
+	margin: 2em;
+}
+
+.inner-wrapper {
+	margin-bottom: 1em;
+}
+
+.inner-wrapper__header {
+	background: black;
+	color: #ffffff;
+	height: 100%;
+	padding: 2em;
+}
+
+.inner-wrapper__form {
+	border: 1px solid;
+	padding: 2em;
+}
+
+.inner-wrapper__comments {
+	padding: 2em;
+}

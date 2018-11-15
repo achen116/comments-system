@@ -15,6 +15,9 @@ angular.module('app')
 
       this.saveComment = function() {
       	CommentsService.api.save(this.comment)
+        CommentsService.comments.push(this.comment)
+
+        this.comment = {}
       }
     }]
   }

@@ -9,6 +9,8 @@ angular.module('app')
         method: 'POST',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' }
       }
-    })
+    }),
+
+    comments: []
   }
 }]);
