@@ -13,6 +13,10 @@ angular.module('app')
     	this.CommentsService.api.get().$promise.then(function(response) {
     		this.CommentsService.comments = response.comments
     	}.bind(this))
+
+      this.showCommentForm = function(comment) {
+        comment.showCommentForm = true
+      }
     }]
   }
 }]);

@@ -16,7 +16,12 @@
 			{{comment.created_at}} ago
 		</div>
 		<div class="comment-item comment-item--reply col-sm-6">
-			<a href="#">Reply</a>
+			<a href="#" ng-click="ctrl.showCommentForm(comment)">Reply</a>
+		</div>
+	</div>
+	<div class="row" ng-if="comment.showCommentForm">
+		<div class="col-sm-12">
+			<comments-new></comments-new>
 		</div>
 	</div>
 </div>
