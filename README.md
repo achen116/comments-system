@@ -2,7 +2,7 @@
 This website comments system allows users to leave comments and reply to other users' comments.
 
 ## Wireframe
-![wireframe](app/assets/imagesimages/comments-wireframe.png)
+![wireframe](app/assets/images/comments-wireframe.png)
 
 ## Launch
 - Clone this repository to your local machine
@@ -27,4 +27,5 @@ This website comments system allows users to leave comments and reply to other u
 
 ## Resources
 - Ruby on Rails
-- JavaScript
+- AngularJS
+- Bootstrap
