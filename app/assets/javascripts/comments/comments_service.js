@@ -11,6 +11,8 @@ angular.module('app')
       }
     }),
 
-    comments: []
+    comments: [],
+
+    parentComment: {}
   }
 }]);

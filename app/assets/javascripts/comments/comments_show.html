@@ -1,27 +1,83 @@
 <h2>Comments: </h2>
 
+<!-- Parent Comments -->
+<!-- TODO: extract into reusable template -->
 <div class="comments-container" ng-repeat="comment in ctrl.CommentsService.comments">
-	<div class="row">
-		<div class="comment-item comment-item--name col-sm-12">
-			{{comment.user}}
+	<div class="comments-container__parent">
+		<div class="row">
+			<div class="comment-item comment-item--name col-sm-12">
+				{{comment.user}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="comment-item comment-item--description col-sm-12">
+				{{comment.description}}
+			</div>
+		</div>
+		<div class="row">
+			<div class="comment-item comment-item--time col-sm-6">
+				{{comment.created_at}} ago
+			</div>
+			<div class="comment-item comment-item--reply col-sm-6">
+				<a href="#" ng-click="ctrl.showReplyForm(comment)">Reply</a>
+			</div>
+		</div>
+		<div class="row" ng-if="comment.showReplyForm">
+			<div class="comment-item comment-item--reply-form col-sm-12">
+				<comments-new parent-comment="comment"></comments-new>
+			</div>
 		</div>
 	</div>
-	<div class="row">
-		<div class="comment-item comment-item--description col-sm-12">
-			{{comment.description}}
-		</div>
-	</div>
-	<div class="row">
-		<div class="comment-item comment-item--time col-sm-6">
-			{{comment.created_at}} ago
-		</div>
-		<div class="comment-item comment-item--reply col-sm-6">
-			<a href="#" ng-click="ctrl.showCommentForm(comment)">Reply</a>
-		</div>
-	</div>
-	<div class="row" ng-if="comment.showCommentForm">
-		<div class="col-sm-12">
-			<comments-new></comments-new>
+
+	<!-- Child Comments -->
+	<!-- TODO: extract into reusable template -->
+	<div class="comments-container__child" ng-if="comment.child_comments.length > 0">
+		<div ng-repeat="childComment in comment.child_comments">
+			<div class="row">
+				<div class="comment-item comment-item--name col-sm-10">
+					{{childComment.user}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="comment-item comment-item--description col-sm-10">
+					{{childComment.description}}
+				</div>
+			</div>
+			<div class="row">
+				<div class="comment-item comment-item--time col-sm-5">
+					{{childComment.created_at}} ago
+				</div>
+				<div class="comment-item comment-item--reply col-sm-5">
+					<a href="#" ng-click="ctrl.showReplyForm(childComment)">Reply</a>
+				</div>
+			</div>
+			<div class="row" ng-if="childComment.showReplyForm">
+				<div class="comment-item comment-item--reply-form col-sm-10">
+					<comments-new parent-comment="childComment"></comments-new>
+				</div>
+			</div>
+
+			<!-- Second Child Comments -->
+			<!-- TODO: extract into reusable template -->
+			<div class="comments-container__second-child" ng-if="childComment.second_child_comments.length > 0">
+				<div ng-repeat="secondChildComment in childComment.second_child_comments">
+					<div class="row">
+						<div class="comment-item comment-item--name col-sm-8">
+							{{secondChildComment.user}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="comment-item comment-item--description col-sm-8">
+							{{secondChildComment.description}}
+						</div>
+					</div>
+					<div class="row">
+						<div class="comment-item comment-item--time col-sm-4">
+							{{secondChildComment.created_at}} ago
+						</div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>

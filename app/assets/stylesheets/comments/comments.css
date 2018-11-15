@@ -1,5 +1,18 @@
-.comments-container > .row {
+/* remove negative margins from bootstrap row class */
+.row {
 	margin: 0;
+}
+
+.form-container {
+
+}
+
+.comments-container__child {
+	padding-left: 3em;
+}
+
+.comments-container__second-child {
+	padding-left: 3em;
 }
 
 .comment-item {
@@ -26,6 +39,12 @@
 .comment-item--reply {
 	text-align: right;
 	font-size: .75em;
+}
+
+.comment-item--reply-form {
+	background: #f8f9fa;
+	padding: 1em;
+	border: 1px solid #e9ecef;
 }
 
 .comments-form__submit {

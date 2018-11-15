@@ -14,8 +14,8 @@ angular.module('app')
     		this.CommentsService.comments = response.comments
     	}.bind(this))
 
-      this.showCommentForm = function(comment) {
-        comment.showCommentForm = true
+      this.showReplyForm = function(comment) {
+        comment.showReplyForm = true
       }
     }]
   }

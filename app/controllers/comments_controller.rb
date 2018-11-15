@@ -1,11 +1,11 @@
 class CommentsController < ApplicationController
 	def index
-		@comments = Comment.all
+		@comments = Comment.where(parent_comment: nil)
 	end
 
 	def create
-		@user 	 = User.new(name: comment_params[:user])
-		@comment = Comment.new(description: comment_params[:description])
+		@user 	 = new_user
+		@comment = new_comment
 
 		if @user.save
 			@comment.user = @user
@@ -19,10 +19,22 @@ class CommentsController < ApplicationController
 
 	private
 
+	def new_user
+		User.new(name: comment_params[:user])
+	end
+
+	def new_comment
+		Comment.new(
+			description: comment_params[:description],
+			parent_comment_id: comment_params[:parent_comment_id]
+		)
+	end
+
 	def comment_params
 		params.permit(
 			:description,
-			:user
+			:user,
+			:parent_comment_id
 		)
 	end
 
