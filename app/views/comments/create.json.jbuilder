@@ -1,13 +1,9 @@
-json.(
-	@comment,
-	:id,
-	:parent_comment_id,
-	:description,
-	:created_at
-)
-json.user 					@comment.user.name
-json.child_comments @comment.child_comments
+json.(@comment, :id, :parent_comment_id, :description)
+json.user 			@comment.user.name
+json.created_at time_ago_in_words(@comment.created_at)
 
-@comment.child_comments.each do |child_comment|
-	json.second_child_comments child_comment.child_comments
+if @comment.parent_comment_id
+	json.second_child_comments @comment.child_comments
+else
+	json.child_comments @comment.child_comments
 end

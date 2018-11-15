@@ -12,10 +12,8 @@ angular.module('app')
     },
     controllerAs: 'ctrl',
     controller: ['$scope', 'CommentsService', function($scope, CommentsService) {
-      // var hasParentComment = Object.keys(CommentsService.parentComment).length > 0
-      this.comment         = $scope.comment // comment form input
-      this.parentComment   = $scope.parentComment
-      // this.parentComment   = hasParentComment ? CommentsService.parentComment : $scope.parentComment
+      this.comment       = $scope.comment // comment form input
+      this.parentComment = $scope.parentComment
 
       this.saveComment = function() {
         // Assign parent comment to new child comment
@@ -25,26 +23,23 @@ angular.module('app')
 
         // Save comment to database
         CommentsService.api.save(this.comment).$promise.then(function(response) {
-          CommentsService.parentComment = response
-        })
+          // Add new comment to parent or child collection
+          if(this.parentComment !== undefined) {
+            if(this.parentComment.parent_comment_id) {
+              // If parent comment is a child comment, add to second child comment collection
+              this.parentComment.second_child_comments.unshift(response)
+            } else {
+              // Otherwise, add to child comment collection
+              this.parentComment.child_comments.unshift(response)
+            }
 
-        // Add new comment to parent or child collection
-        if(this.parentComment !== undefined) {
-          if(this.parentComment.parent_comment_id) {
-            // If parent comment is a child comment, add to second child comment collection
-            this.parentComment.second_child_comments = this.parentComment.second_child_comments || []
-            this.parentComment.second_child_comments.unshift(this.comment)
+            // Hide reply form
+            this.parentComment.showReplyForm = false
           } else {
-            // Otherwise, add to child comment collection
-            this.parentComment.child_comments = this.parentComment.child_comments || []
-            this.parentComment.child_comments.unshift(this.comment)
+            CommentsService.comments.unshift(response)
           }
+        }.bind(this))
 
-          // Hide reply form
-          this.parentComment.showReplyForm = false
-        } else {
-          CommentsService.comments.unshift(this.comment)
-        }
 
         // Reset comment form
         this.comment = {}
