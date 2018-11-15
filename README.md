@@ -4,6 +4,9 @@ This website comments system allows users to leave comments and reply to other u
 ## Wireframe
 ![wireframe](app/assets/images/comments-wireframe.png)
 
+## Preview
+![preview](app/assets/images/comments-preview.png)
+
 ## Launch
 - Clone this repository to your local machine
 - Navigate to the project's directory
